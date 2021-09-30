@@ -3,6 +3,14 @@
 	<servlet>
 		<servlet-name>BoardList</servlet-name>
 		<servlet-class>com.controller.board.ListController</servlet-class>
+		<init-param>
+			<param-name>test1</param-name>
+			<param-value>123</param-value>
+		</init-param>
+		<init-param>
+			<param-name>test2</param-name>
+			<param-value>456</param-value>
+		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BoardList</servlet-name>
