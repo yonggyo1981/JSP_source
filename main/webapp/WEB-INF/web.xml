@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <web-app>
 	<servlet>
 		<servlet-name>BoardList</servlet-name>
-		<servlet-class>com.controller.BoardListController</servlet-class>
+		<servlet-class>com.controller.board.ListController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BoardList</servlet-name>
