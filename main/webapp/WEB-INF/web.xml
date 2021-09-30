@@ -13,9 +13,17 @@
 			<param-value>456</param-value>
 		</init-param>
 	</servlet>
+	<servlet>
+		<servlet-name>BoardView</servlet-name>
+		<servlet-class>com.controller.board.ViewController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>BoardList</servlet-name>
 		<url-pattern>/board/list</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BoardView</servlet-name>
+		<url-pattern>/board/view</url-pattern>
 	</servlet-mapping>
 	<!-- 서블릿 E -->
 	<!--  필터 S  -->
@@ -27,9 +35,17 @@
 			<param-value>123</param-value>
 		</init-param>
 	</filter>
+	<filter>
+		<filter-name>SiteMain2</filter-name>
+		<filter-class>com.filter.SiteMain2</filter-class>
+	</filter>
 	<filter-mapping>
 		<filter-name>SiteMain</filter-name>
 		<url-pattern>/board/list</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SiteMain2</filter-name>
+		<url-pattern>/board/view</url-pattern>
 	</filter-mapping>
 	<!--  필터 E  -->
 </web-app>
