@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <web-app>
+	<!--  서블릿 S  -->
 	<servlet>
 		<servlet-name>BoardList</servlet-name>
 		<servlet-class>com.controller.board.ListController</servlet-class>
@@ -16,4 +17,19 @@
 		<servlet-name>BoardList</servlet-name>
 		<url-pattern>/board/list</url-pattern>
 	</servlet-mapping>
+	<!-- 서블릿 E -->
+	<!--  필터 S  -->
+	<filter>
+		<filter-name>SiteMain</filter-name>
+		<filter-class>com.filter.SiteMain</filter-class>
+		<init-param>
+			<param-name>filter123</param-name>
+			<param-value>123</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>SiteMain</filter-name>
+		<url-pattern>/board/list</url-pattern>
+	</filter-mapping>
+	<!--  필터 E  -->
 </web-app>

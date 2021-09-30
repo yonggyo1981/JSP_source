@@ -18,14 +18,14 @@ public class ListController extends HttpServlet {
 		System.out.println("test1 : " + test1);
 		System.out.println("test2 : " + test2);
 		
-		RequestDispatcher header = request.getRequestDispatcher("../ch00/header.jsp");
-		header.include(request, response);
+		//RequestDispatcher header = request.getRequestDispatcher("../ch00/header.jsp");
+		//header.include(request, response);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("../ch00/list.jsp");
 		rd.include(request, response);
 		
-		RequestDispatcher footer = request.getRequestDispatcher("../ch00/footer.jsp");
-		footer.include(request, response);
+		//RequestDispatcher footer = request.getRequestDispatcher("../ch00/footer.jsp");
+		//footer.include(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
