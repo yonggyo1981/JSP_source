@@ -13,6 +13,7 @@ public class Pagination {
 	private int startNo; // 구간별 시작 번호
 	private int lastNo; // 구간별 종료 번호
 	private int num; // 구간 번호
+	private int lastNum; // 마지막 구간 번호
 	private int prevNo; // 이전 구간 시작 번호
 	private int nextNo; // 다음 구간 시작 번호
 	private int lastPageNo; // 마지막 페이지 번호
@@ -34,7 +35,7 @@ public class Pagination {
 		lastPageNo = (int)ceil(total / limit);
 		
 		// 마지막 페이지 구간
-		int lastNum = (int)floor((lastPageNo - 1) / pageLinks); 
+		lastNum = (int)floor((lastPageNo - 1) / pageLinks); 
 		
 		// 마지막 구간의 페이지 번호가 마지막 페이지 번호보다 크면 X
 		if (lastNo > lastPageNo) {  
@@ -57,43 +58,50 @@ public class Pagination {
 		sb.append("<ul class='pagination'>");
 		
 		// 첫 페이지 
-		sb.append("<li class='page'>");
-		sb.append("<a href='#'>");
-		sb.append(1);
-		sb.append("</a>");
-		sb.append("</li>");
+		if (num > 0) {
+			sb.append("<li class='page'>");
+			sb.append("<a href='?page=1'>");
+			sb.append("first");
+			sb.append("</a>");
+			sb.append("</li>");
+		}
 		
 		// 이전 페이지 링크 
 		if (prevNo > 0) {
 			sb.append("<li class='page'>");
-			sb.append("<a href='#'>");
-			sb.append(prevNo);
+			sb.append("<a href='?page=" + prevNo + "'>");
+			sb.append("prev");
 			sb.append("</a>");
 			sb.append("</li>");
 		}
 		
 		for (int i = startNo; i <= lastNo; i++) {
 			sb.append("<li class='page'>");
+			sb.append("<a href='?page=" + i + "'>");
 			sb.append(i);
+			sb.append("</a>");
 			sb.append("</li>");
 		}
 		
 		// 다음 페이지
 		if (nextNo > 0) {
 			sb.append("<li class='page'>");
-			sb.append("<a href='#'>");
-			sb.append(nextNo);
+			sb.append("<a href='?page=" + nextNo + "'>");
+			sb.append("next");
 			sb.append("</a>");
 			sb.append("</li>");
-			sb.append("</ul>");
 		}
 		
 		// 마지막 페이지
-		sb.append("<li class='page'>");
-		sb.append("<a href='#'>");
-		sb.append(lastPageNo);
-		sb.append("</a>");
-		sb.append("</li>");
+		if (num < lastNum) {
+			sb.append("<li class='page'>");
+			sb.append("<a href='?page=" + lastPageNo + "'>");
+			sb.append("last");
+			sb.append("</a>");
+			sb.append("</li>");
+		}
+		
+		sb.append("</ul>");
 		
 		return sb.toString();
 	}
