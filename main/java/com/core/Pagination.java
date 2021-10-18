@@ -8,8 +8,6 @@ import static java.lang.Math.*;
  */
 public class Pagination {
 	private int page; // 페이지 번호
-	private int pageLinks; // 페이지 구간별 개수
-	private int limit; //1페이지당 출력 개수
 	private int startNo; // 구간별 시작 번호
 	private int lastNo; // 구간별 종료 번호
 	private int num; // 구간 번호
@@ -18,13 +16,16 @@ public class Pagination {
 	private int nextNo; // 다음 구간 시작 번호
 	private int lastPageNo; // 마지막 페이지 번호
 	
-	public Pagination(int page, int total) {
+	public Pagination(int page, int total, int pageLinks, int limit) {
 		this.page = page;
 		if (this.page <= 0) 
 			this.page = 1;
 		
-		pageLinks = 5; // 페이지 구간별 개수
-		limit = 15; // 1페이지당 출력 개수 
+		// 페이지 구간별 개수
+		pageLinks = (pageLinks <= 0)?5:pageLinks;
+		
+		// 1페이지당 출력 개수 
+		limit = (limit <= 0)?15:limit;
 		
 		num = (int)floor((this.page - 1)/pageLinks); // 페이지 구간 번호
 
@@ -51,6 +52,19 @@ public class Pagination {
 		if (num < lastNum) { // 현재 페이지 구간이 마지막 페이지 구간보다 이전인 경우 
 			nextNo = (num + 1) * pageLinks + 1;
 		}
+	}
+	
+	
+	public Pagination(int page, int total, int pageLinks) {
+		this(page, total, pageLinks, 15);
+	}
+	
+	public Pagination(int page, int total) {
+		this(page, total, 5, 15);
+	}
+	
+	public Pagination(HttpServletRequest request) {
+		
 	}
 	
 	public String getPageHtml() {
