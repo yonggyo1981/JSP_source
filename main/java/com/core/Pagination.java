@@ -65,7 +65,7 @@ public class Pagination {
 	}
 	
 	public Pagination(String page, int total) {
-		this(Integer.parseInt(page), total);
+		this((page == null)?1:Integer.parseInt(page), total);
 	}
 	
 	public Pagination(HttpServletRequest request, int total) {
