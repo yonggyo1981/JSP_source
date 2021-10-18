@@ -20,6 +20,9 @@ public class ListController extends HttpServlet {
 		Pagination pagination = new Pagination(request, total);
 		String pagingHtml = pagination.getPageHtml();
 		
+		request.setAttribute("list", list);
+		request.setAttribute("pagingHtml", pagingHtml);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
 		rd.forward(request, response);
 	}
