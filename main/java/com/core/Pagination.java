@@ -1,6 +1,7 @@
 package com.core;
 
 import static java.lang.Math.*;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 페이지네이션 
@@ -63,8 +64,12 @@ public class Pagination {
 		this(page, total, 5, 15);
 	}
 	
-	public Pagination(HttpServletRequest request) {
-		
+	public Pagination(String page, int total) {
+		this(Integer.parseInt(page), total);
+	}
+	
+	public Pagination(HttpServletRequest request, int total) {
+		this(request.getParameter("page"), total);
 	}
 	
 	public String getPageHtml() {
