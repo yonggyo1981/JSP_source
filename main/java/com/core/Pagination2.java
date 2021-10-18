@@ -26,10 +26,10 @@ public class Pagination2 {
 		
 		/**
 		 * lastNo <= 마지막 페이지
-		 * 1) 마지막페이지(1페이지당 레코드 갯수)
+		 * 1) 마지막페이지(1페이지당 레코드 개수)
 		 * 2) 구간별 종료 번호가 마지막페이지 보다 큰지 체크 -> 크면  = 마지막 페이지
 		 */
-		int limit = 15;
+		int limit = 15; // 1페이지당 레코드 개수
 		int lastPageNo = (int)ceil(total / (double)limit);
 		if (lastNo > lastPageNo) {
 			lastNo = lastPageNo;
