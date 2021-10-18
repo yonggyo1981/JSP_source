@@ -8,5 +8,25 @@
 	password="aA!12345"
 />
 <sql:query var="resultSet" dataSource="${dataSource}">
-
+	SELECT memNo, memId, memNm FROM member
 </sql:query>
+<table border="1">
+	<thead>
+		<tr>
+			<th>회원번호</th>
+			<th>회원아이디</th>
+			<th>회원명</th>
+		</tr>
+	</thead>
+	<tbody>
+	<c:forEach var="row" items="${resultSet.rowsByIndex}">
+		<tr>
+			<c:forEach var="item" items="row">
+				<c:out value="${item}" />
+			</c:forEach>
+		</tr>
+	</c:forEach>
+	</tbody>
+</table>
+
+
