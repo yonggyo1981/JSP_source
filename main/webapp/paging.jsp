@@ -3,3 +3,4 @@
 <%
 	Pagination pagination = new Pagination(7, 1000);
 %>
+<%=pagination.getPageHtml()%>
