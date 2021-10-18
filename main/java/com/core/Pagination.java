@@ -98,7 +98,13 @@ public class Pagination {
 		for (int i = startNo; i <= lastNo; i++) {
 			sb.append("<li class='page'>");
 			sb.append("<a href='?page=" + i + "'>");
+			if (page == i) {
+				sb.append("<b>");
+			}
 			sb.append(i);
+			if (page == i) {
+				sb.append("</b>");
+			}
 			sb.append("</a>");
 			sb.append("</li>");
 		}
