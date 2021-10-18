@@ -16,14 +16,22 @@
 			<th>회원번호</th>
 			<th>회원아이디</th>
 			<th>회원명</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 	<c:forEach var="row" items="${resultSet.rowsByIndex}">
 		<tr>
-			<c:forEach var="item" items="row">
-				<c:out value="${item}" />
+			<c:forEach var="item" items="${row}">
+				<td><c:out value="${item}" /></td>
 			</c:forEach>
+			<td>
+				<c:forEach var="item" items="${row}" varStatus="status">
+					<c:if test="${status.first}">
+						<a href='ex09_delete.jsp?memNo=${item}'>삭제</a>
+					</c:if>
+				</c:forEach>
+			</td>
 		</tr>
 	</c:forEach>
 	</tbody>
