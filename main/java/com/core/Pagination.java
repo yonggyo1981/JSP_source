@@ -34,7 +34,7 @@ public class Pagination {
 		lastNo = startNo + pageLinks - 1; // 구간별 종료 번호
 		
 		// 마지막 페이지 번호
-		lastPageNo = (int)ceil(total / limit);
+		lastPageNo = (int)ceil(total / (double)limit);
 		
 		// 마지막 페이지 구간
 		lastNum = (int)floor((lastPageNo - 1) / pageLinks); 
@@ -43,6 +43,7 @@ public class Pagination {
 		if (lastNo > lastPageNo) {  
 			lastNo = lastPageNo;
 		}
+
 		
 		// 이전 구간 페이지 시작 번호
 		if (num > 0) {
