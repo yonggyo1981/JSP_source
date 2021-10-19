@@ -93,6 +93,15 @@ public class Pagination3 {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<ul class='pagination'>");
 		
+		// 첫 페이지, 이전 페이지 
+		if (num > 0) { // 구간이 첫 구간이 아닌 경우만 노출 
+			sb.append("<li class='page first'><a href='?page=1'>First</a></li>");
+			
+			sb.append("<li class='page prev'><a href='?page=");
+			sb.append(prevNo);
+			sb.append("'>Prev</a></li>");
+		}
+		
 		for (int i = startNo; i <= lastNo; i++) {
 			sb.append("<li class='page");
 			if (i == page) {
@@ -106,6 +115,16 @@ public class Pagination3 {
 			sb.append("</a>");
 			sb.append("</li>");
 		}
+		
+		// 다음페이지 이동, 마지막 페이지 이동
+		if (num < lastNum) {
+			
+			
+			sb.append("<li class='page last'><a href='?page=");
+			sb.append(lastPageNo);
+			sb.append("'>Last</a></li>");
+		}
+		
 		sb.append("</ul>");
 		
 		return sb.toString();
