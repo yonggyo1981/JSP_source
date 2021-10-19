@@ -1,5 +1,7 @@
 package com.core;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Pagination3 {
 	
 	private int num; // 페이지 구간 번호(현재 페이지)
@@ -87,6 +89,24 @@ public class Pagination3 {
 		if (num < lastNum) {
 			nextNo = (num + 1) * pageLinks + 1;
 		}
+	}
+	
+	public Pagination3(HttpServletRequest request, int total) {
+		this(
+			request.getParameter("page"),
+			total,
+			10,
+			15
+		);
+	}
+	
+	public Pagination3(String page, int total, int pageLinks, int limit) {
+		this(
+			(page == null)?1:Integer.parseInt(page),
+			total,
+			pageLinks,
+			limit
+		);
 	}
 	
 	public String getPageHtml() {
