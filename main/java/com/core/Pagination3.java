@@ -119,6 +119,9 @@ public class Pagination3 {
 		// 다음페이지 이동, 마지막 페이지 이동
 		if (num < lastNum) {
 			
+			sb.append("<li class='page next'><a href='?page=");
+			sb.append(nextNo);
+			sb.append("'>Next</a></li>");
 			
 			sb.append("<li class='page last'><a href='?page=");
 			sb.append(lastPageNo);
