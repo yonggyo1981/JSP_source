@@ -88,4 +88,29 @@ public class Pagination3 {
 			nextNo = (num + 1) * pageLinks + 1;
 		}
 	}
+	
+	public String getPageHtml() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("<ul class='pagination'>");
+		
+		for (int i = startNo; i <= lastNo; i++) {
+			sb.append("<li class='page");
+			if (i == page) {
+				sb.append(" on");
+			}
+			sb.append("'>");
+			sb.append("<a href='?page=");
+			sb.append(i);
+			sb.append("'>");
+			sb.append(i);
+			sb.append("</a>");
+			sb.append("</li>");
+		}
+		sb.append("</ul>");
+		
+		return sb.toString();
+	}
 }
+
+
+
