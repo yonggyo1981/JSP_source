@@ -36,12 +36,14 @@ public class Logger {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				out.close();
-				bw.close();
-				fw.close();
-			} catch (IOException e) {
-				e.printStackTrace();
+			if (!status.equals("dev")) {
+				try {
+					out.close();
+					bw.close();
+					fw.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
