@@ -66,6 +66,7 @@ public class Logger {
 		BufferedWriter bw = null;
 		PrintWriter out  = null;
 		try {
+			System.out.println("Writer : " + writer);
 			// 별도 설정 Writer가 없는 경우 FileWriter 또는 System.out 설정 
 			if (writer == null) {
 				if (status.equals("dev")) { // 콘솔 출력 
@@ -85,8 +86,10 @@ public class Logger {
 			try {
 				if (out != null) out.close();
 				if (bw != null) bw.close();
-				if (writer != null) writer.close();
-				
+				if (writer != null && !status.equals("dev")) {
+					writer.close();
+					writer = null;
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
