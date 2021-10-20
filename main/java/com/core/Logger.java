@@ -5,6 +5,7 @@ import java.text.*;
 import java.util.*;
 
 import javax.servlet.*;
+import javax.servlet.http.*;
 
 /**
  * 로거 
@@ -135,6 +136,43 @@ public class Logger {
 		log(message, Logger.INFO);
 	}
 	
+	/**
+	 * 로그기록 - 사용자 접속 정보
+	 * 
+	 * @param request
+	 */
+	public static void log(ServletRequest request) {
+		/**
+		 * 1. 요청 메서드(O)
+		 * 2. 요청 URL(O)
+		 * 3. 접속 IP(O)
+		 * 4. Referrer - 유입 경로 
+		 * 5. User Agent -> 요청 헤더
+		 * 6. Accept-Language -> 사용 언어 
+		 */
+		if (request instanceof HttpServletRequest) {
+			HttpServletRequest req = (HttpServletRequest)request;
+			StringBuilder sb = new StringBuilder();
+			
+			String method = req.getMethod();
+			String referer = req.getHeader("referer"); // 유입경로
+			
+			sb.append(method);
+			sb.append(" / URL : ");
+			sb.append(req.getRequestURL());
+			sb.append(" / IP : ");
+			sb.append(req.getRemoteAddr());
+			if (referer != null) {
+				sb.append(" / REF : ");
+				sb.append(referer);
+			}
+			
+			sb.append(" / UA : ");
+			sb.append(req.getHeader("user-agent"));
+			
+			log(sb.toString(), Logger.INFO);
+		} // if
+	}
 }
 
 
