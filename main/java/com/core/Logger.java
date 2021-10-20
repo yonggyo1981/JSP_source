@@ -30,6 +30,8 @@ public class Logger {
 	private static String logDir; // 로그 디렉토리
 	private static String logPath;// 디렉토리포함 로그 파일명(날짜)
 	
+	private static boolean preventClosed = false;
+	
 	/**
 	 * 설정 초기화 
 	 * 
@@ -51,6 +53,15 @@ public class Logger {
 		);
 	}
 	
+	/** 
+	 * 리소스를 로그 기록 후에 닫기 여부 
+	 * 
+	 * @param preventClosed
+	 */
+	public static void setPreventClosed(boolean preventClosed) {
+		Logger.preventClosed = preventClosed;
+	}
+	 
 	/**
 	 * Writer(출력 스트림) 설정 
 	 * 
@@ -112,7 +123,7 @@ public class Logger {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			if (!status.equals("dev")) {
+			if (!status.equals("dev") && !preventClosed) {
 				try {
 					if (out != null) out.close();
 					if (bw != null) bw.close();
