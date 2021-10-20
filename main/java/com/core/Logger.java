@@ -62,6 +62,9 @@ public class Logger {
 	 * @param message
 	 */
 	public static void log(String message) {
+		
+		BufferedWriter bw = null;
+		PrintWriter out  = null;
 		try {
 			// 별도 설정 Writer가 없는 경우 FileWriter 또는 System.out 설정 
 			if (writer == null) {
@@ -71,9 +74,22 @@ public class Logger {
 					setWriter(new FileWriter(logPath, true));
 				}
 			}
-		} catch (IOException e) {
 			
-		}
+			bw = new BufferedWriter(writer);
+			out = new PrintWriter(bw);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (out != null) out.close();
+				if (bw != null) bw.close();
+				if (writer != null) writer.close();
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+ 		}
 	}
 }
 
