@@ -83,16 +83,17 @@ public class Logger {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-
-			try {
-				if (out != null) out.close();
-				if (bw != null) bw.close();
-				if (writer != null && !status.equals("dev")) {
-					writer.close();
-					writer = null;
+			if (!status.equals("dev")) {
+				try {
+					if (out != null) out.close();
+					if (bw != null) bw.close();
+					if (writer != null) {
+						writer.close();
+						writer = null;
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
  		}
 	}
