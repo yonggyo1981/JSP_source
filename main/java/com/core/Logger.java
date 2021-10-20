@@ -146,9 +146,9 @@ public class Logger {
 		 * 1. 요청 메서드(O)
 		 * 2. 요청 URL(O)
 		 * 3. 접속 IP(O)
-		 * 4. Referrer - 유입 경로 
-		 * 5. User Agent -> 요청 헤더
-		 * 6. Accept-Language -> 사용 언어 
+		 * 4. Referrer - 유입 경로 (O)
+		 * 5. User Agent -> 요청 헤더 (O)
+		 * 6. Accept-Language -> 사용 언어 (O) 
 		 */
 		if (request instanceof HttpServletRequest) {
 			HttpServletRequest req = (HttpServletRequest)request;
@@ -166,9 +166,13 @@ public class Logger {
 				sb.append(" / REF : ");
 				sb.append(referer);
 			}
-			
+			// User Agent(브라우저 접속 정보)
 			sb.append(" / UA : ");
 			sb.append(req.getHeader("user-agent"));
+			
+			// 사용 언어 
+			sb.append(" / LANG : ");
+			sb.append(req.getHeader("accept-language"));
 			
 			log(sb.toString(), Logger.INFO);
 		} // if
