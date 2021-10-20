@@ -191,7 +191,7 @@ public class Logger {
 	 * 
 	 * @param e   /  로그 레벨 ERROR로 고정 
 	 */
-	public void log(Throwable e) {
+	public static void log(Throwable e) {
 		
 		
 		log("------------------------------------- Error Stack Start ----------------------------", ERROR);
@@ -202,7 +202,11 @@ public class Logger {
 			sb.append(stack.getClassName());
 			sb.append(" / File : ");
 			sb.append(stack.getFileName());
-			
+			sb.append(" / LINE : ");
+			sb.append(stack.getLineNumber());
+			sb.append(" / Method : " );
+			sb.append(stack.getMethodName());
+			log(sb, ERROR);
 		}
 		
 		

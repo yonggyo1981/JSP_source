@@ -6,7 +6,7 @@
 		<filter-class>com.filter.CommonFilter</filter-class>
 		<init-param>
 			<param-name>status</param-name>
-			<param-value>dev</param-value>
+			<param-value>service</param-value>
 		</init-param>
 		<init-param>
 			<param-name>logDir</param-name>
