@@ -136,6 +136,14 @@ public class Logger {
 		log(message, Logger.INFO);
 	}
 	
+	public static void log(StringBuilder sb, int level) {
+		log(sb.toString(), level);
+	}
+	
+	public static void log(StringBuffer sb, int level) {
+		log(sb.toString(), level);
+	}
+	
 	/**
 	 * 로그기록 - 사용자 접속 정보
 	 * 
@@ -174,8 +182,32 @@ public class Logger {
 			sb.append(" / LANG : ");
 			sb.append(req.getHeader("accept-language"));
 			
-			log(sb.toString(), Logger.INFO);
+			log(sb, Logger.INFO);
 		} // if
+	}
+	
+	/**
+	 * 예외, 에러에대한 로그 기록 
+	 * 
+	 * @param e   /  로그 레벨 ERROR로 고정 
+	 */
+	public void log(Throwable e) {
+		
+		
+		log("------------------------------------- Error Stack Start ----------------------------", ERROR);
+		StackTraceElement[] stacks = e.getStackTrace();
+		for (StackTraceElement stack : stacks) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("ClassName : ");
+			sb.append(stack.getClassName());
+			sb.append(" / File : ");
+			sb.append(stack.getFileName());
+			
+		}
+		
+		
+		log("------------------------------------- Error Stack END ----------------------------", ERROR);
+		log("", ERROR);
 	}
 }
 
