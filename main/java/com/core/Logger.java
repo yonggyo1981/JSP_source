@@ -12,6 +12,18 @@ import javax.servlet.*;
  */
 public class Logger {
 	
+	/** 로그 레벨 상수 */
+	private static final int DEBUG = 0;
+	private static final int INFO = 1;
+	private static final int NOTICE = 2;
+	private static final int WARNING = 3;
+	private static final int ERROR = 4;
+	private static final int CRITICAL = 5;
+	private static final int ALERT = 6;
+	private static final int EMERGENCY = 7;
+	private static final String[] errorLevels = {"debug", "info", "notice", "warning", "error", "critical", "alert", "emergency" };
+
+	
 	private static String status; // dev - 개발중(콘솔), service - 서비스 중(파일)
 	private static Writer writer; 
 	private static String logDir; // 로그 디렉토리
