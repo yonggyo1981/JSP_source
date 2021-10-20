@@ -72,8 +72,11 @@ public class Logger {
 	 * 로그 기록 
 	 * 
 	 * @param message
+	 * @param level 로그 레벨(0~7) - 1 - info
 	 */
-	public static void log(String message) {
+	public static void log(String message, int level) {
+		
+		if (level < 0 || level > 7) level = 1; // info가 기본값
 		
 		BufferedWriter bw = null;
 		PrintWriter out  = null;
@@ -89,7 +92,20 @@ public class Logger {
 			
 			bw = new BufferedWriter(writer);
 			out = new PrintWriter(bw);
-			out.println(message);
+			
+			StringBuilder sb = new StringBuilder();
+			// 로그 레벨 표기 
+			sb.append("[%s]");
+			
+			// 로그 작성 시간 표기 
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+			String time = sdf.format(new Date());
+			sb.append("[%s]");
+			
+			// 메세지 표기 
+			sb.append("%s");
+			
+			out.printf(sb.toString(), errorLevels[level], time, message);
 			out.flush();
 			
 		} catch (IOException e) {
