@@ -77,6 +77,7 @@ public class Logger {
 			
 			bw = new BufferedWriter(writer);
 			out = new PrintWriter(bw);
+			out.println(message);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
