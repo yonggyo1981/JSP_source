@@ -103,7 +103,7 @@ public class Logger {
 			sb.append("[%s]");
 			
 			// 메세지 표기 
-			sb.append("%s");
+			sb.append("%s%n");
 			
 			out.printf(sb.toString(), errorLevels[level], time, message);
 			out.flush();
