@@ -125,6 +125,16 @@ public class Logger {
 			}
  		}
 	}
+	
+	/**
+	 * 로그 기록, level - INFO로 고정 
+	 * 
+	 * @param message
+	 */
+	public static void log(String message) {
+		log(message, Logger.INFO);
+	}
+	
 }
 
 
